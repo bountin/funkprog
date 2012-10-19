@@ -16,3 +16,8 @@ module Main where
 	katNumber n
 		| n > 0 = div (binom ((2*n), n)) (n+1)
 		| otherwise = error "Program error: Argument ungueltig"
+
+	sumPowers :: Integer -> Integer -> Integer
+	sumPowers n k
+		| k < 0     = -1
+		| otherwise = sum [i^k | i <- [1..n]]
