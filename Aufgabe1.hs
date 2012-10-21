@@ -21,3 +21,9 @@ module Main where
 	sumPowers n k
 		| k < 0     = -1
 		| otherwise = sum [i^k | i <- [1..n]]
+
+	stretch :: Char -> Int -> String -> String
+	stretch c i input
+		| input == []     = ""
+		| c == head input = (take i (repeat c)) ++ (stretch c i (tail input))
+		| otherwise       = (head input) : (stretch c i (tail input))
