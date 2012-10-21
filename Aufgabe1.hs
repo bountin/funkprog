@@ -8,7 +8,7 @@ module Main where
 	-- binom: Like 49 over 6
 	binom :: (Integer, Integer) -> Integer
 	binom (n,k)
-		| n > 0 && k > 0  = div (fac n) ((fac k)  * fac (n-k))
+		| n >= 0 && k >= 0  = div (fac n) ((fac k)  * fac (n-k))
 		| otherwise       = error "Binom error  "
 
 	-- Catalan number for example 1
