@@ -14,7 +14,7 @@ module Main where
 	-- Catalan number for example 1
 	katNumber :: Integer -> Integer
 	katNumber n
-		| n > 0 = div (binom ((2*n), n)) (n+1)
+		| n > 0 = div (binom ((2* (n-1)), n-1)) (n)
 		| otherwise = error "Program error: Argument ungueltig"
 
 	sumPowers :: Integer -> Integer -> Integer
