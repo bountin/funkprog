@@ -4,3 +4,11 @@ cabal-dev
 *.hi
 *.chi
 *.chs.h
+
+# Ignores for funkprog @g0
+.bash_history
+.daten
+.forward
+.newsrc
+.ssh/
+.ysession
