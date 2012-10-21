@@ -22,6 +22,18 @@ module Main where
 		| k < 0     = -1
 		| otherwise = sum [i^k | i <- [1..n]]
 
+	removeChar :: Char -> String -> String
+	removeChar c input
+	    | input == []     = ""
+	    | c == head input = removeChar c (tail input)
+	    | otherwise       = shrink c input
+
+	shrink :: Char -> String -> String
+	shrink c input
+		| input == []     = ""
+		| c == head input = c : removeChar c (tail input)
+		| otherwise       = (head input) : shrink c (tail input)
+
 	stretch :: Char -> Int -> String -> String
 	stretch c i input
 		| input == []     = ""
