@@ -1,0 +1,19 @@
+katNumber 1 == 1
+katNumber 5 == 14
+katNumber 7 == 132
+katNumber 0 ->> Program error: Argument ungueltig
+
+sumPowers 100 1 == 5050
+sumPowers 100 2 == 338350
+sumPowers 100 0 == 100
+sumPowers 100 (-5) == (-1)
+
+shrink 'f' "Schifffahrt" == "Schifahrt"
+shrink 'i' "Schifffahrt" == "Schifffahrt"
+shrink 'Z' "Schifffahrt" == "Schifffahrt" 
+shrink 'a' "baaCaaadgeaaba" == "baCadgeaba"
+
+stretch 'a' 5 "gaehn" == "gaaaaaehn"
+stretch 'A' 5 "gaehn" == "gaehn"
+stretch 'a' (-5) "gaehn" == "gehn"
+stretch 'a' 2 "baaCaaadgeaaba" == "baaaaCaaaaaadgeaaaabaa"
