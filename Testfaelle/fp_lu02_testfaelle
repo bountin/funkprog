@@ -1,0 +1,30 @@
+kgv 12 20 == 60
+kgv 15 40 == 120
+kgv (-15) 40 == 120
+kgv 17 0 == 0
+
+agv 12 20 (50,130) == [60,120]
+agv 15 40 ((-50),150) == [120]
+agv (-15) 20 (60,180) == [60,120,180]
+agv 15 40 (200,10) == []
+agv 17 0 ((-1000),1000) == []
+
+type PassName         = String
+type FlightNumber     = Integer
+type PlaceOfDeparture = String
+type Destination      = String
+type Airfare          = Integer
+type Database         = [(PassName,FlightNumber,PlaceOfDeparture,Destination,Airfare)]
+
+db = [ ("Anton",857,"Vienna","London",237),
+       ("Berta",456,"Paris","Berlin",278),
+       ("Anton",123,"Rome","London",417),
+       ("Anton",109,"London","Berlin",237),
+       ("Karla",888,"Vienna","Rome",350),
+       ("Karla",832,"Rome","London",417),
+       ("Berta",857,"Vienna","London",199),
+       ("Karla",753,"Vienna","London",237) ]
+
+flights db "Anton" == [(109,237),(123,417),(857,237)]
+pass2Dest db "London" == ["Anton","Anton","Berta","Karla","Karla"]  
+mostValuedPass db "Vienna" "London" == (["Karla","Anton"],237)  
