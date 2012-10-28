@@ -57,10 +57,3 @@ module Main where
 
 	findByDepDest :: Database -> PlaceOfDeparture -> Destination -> [Flight]
 	findByDepDest db search_dep search_dest = sortBy (\a b -> compare (fare b) (fare a)) [f | f <- db, search_dest == destination f, search_dep == departure f]
-
-	findFlightsByFare :: Airfare -> [Flight] -> [Flight]
-	findFlightsByFare _ []    = []
-	findFlightsByFare c (h:t) =
-		if (c == fare h)
-			then h : findFlightsByFare c t
-			else []
