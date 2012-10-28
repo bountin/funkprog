@@ -49,10 +49,10 @@ module Main where
 	pass2Dest db search_dest = sort (map (name) [f | f <- db, search_dest == destination f])
 
 	mostValuedPass :: Database -> PlaceOfDeparture -> Destination -> ([PassName], Airfare)
-	mostValuedPass db search_dep search_dest = (reverse (sort (map (name) filtered_flights)), maxFare)
+	mostValuedPass db search_dep search_dest = (reverse (sort (map (name) filtered_flights)), maxFare) -- reverse sort for DESC sort
 		where
-		sorted_flights   = findByDepDest db search_dep search_dest
-		filtered_flights = [f | f <- sorted_flights, maxFare == fare f]
+		sorted_flights   = findByDepDest db search_dep search_dest      -- Database Flights are filtered by DepDest and sorted DESC by fare
+		filtered_flights = [f | f <- sorted_flights, maxFare == fare f] -- sorted_flights are filtered by maxFare
 		maxFare  = fare (head sorted_flights)
 
 	findByDepDest :: Database -> PlaceOfDeparture -> Destination -> [Flight]
