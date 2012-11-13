@@ -35,4 +35,4 @@ runhaskell Aufgabe4_test.hs
 Contributions
 =============
 
-Code is by my one (Bountin), tests are shamelessly stolen from Mononofu's repository
+Code is by my one (Bountin), tests are shamelessly stolen from Mononofu's repository [https://github.com/Mononofu/funprog]
