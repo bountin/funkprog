@@ -1,5 +1,6 @@
 module Aufgabe5 where
 
+{- Needed for nub in erdos part -}
 import List
 
 data Tree = Null | Tree Label Tree Tree deriving (Eq,Show)
@@ -60,10 +61,6 @@ extendScientists db orig
 	| length (nub orig) == length new_scientists = []
 	| otherwise = new_scientists
 	where new_scientists = nub [sc | x <- orig, sc <- getCoworkers db x]
-
-scientistMerge :: Database -> [Scientist] -> [Scientist] -> [Scientist]
-scientistMerge db [] list = list
-scientistMerge db (x:xs) list = x : list
 
 getCoworkers :: Database -> Scientist -> [Scientist]
 getCoworkers db sc = [ x |
