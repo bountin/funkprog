@@ -63,7 +63,7 @@ any NegaBinary.
 
 > extract :: String -> NegaBinary
 > extract input = if (extracted == "") then "0" else extracted
->	where extracted = extractReal input
+>	where extracted = (dropZeroes.extractReal) input
 
 
 ****************************************************
