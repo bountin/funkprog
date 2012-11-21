@@ -1,0 +1,23 @@
+n1 = Z
+n2 = S (S Z)
+n3 = S (S (S (S Z)))
+n4 = S (S (S (S (S (S Z)))))
+n5 = S (S (S (S (S (S (S Z))))))
+n6 = S (S (S (S (S (S (S (S (S (S (S Z))))))))))
+show n1 == ""
+show n2 == "II"
+show n3 == "IV"
+show n4 == "VI"
+show n5 == "VII"
+show n6 == "XI"
+
+show (Rat Z (S Z)) == "0/1"
+show (Rat (S (S (S Z))) (S (S (S (S Z))))) == "111/100"
+show (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) == "111/11010"
+
+t2nf (Rat Z (S (S (S Z)))) == Rat Z (S Z)
+t2nf (Rat (S (S (S Z))) (S (S (S (S Z))))) == Rat (S (S (S Z))) (S (S (S (S Z))))
+t2nf (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) == Rat (S Z) (S (S Z))
+t2nf (NP (S Z,S Z)) == NP (Z,Z)
+t2nf (NP ((S (S Z)),(S (S (S Z))))) == NP (Z,S Z)
+t2nf (NP ((S (S (S Z))),(S (S Z)))) == NP (S Z,Z)
