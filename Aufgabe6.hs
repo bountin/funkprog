@@ -73,6 +73,27 @@ mkCan (NP (Z, a)) = (NP (Z, a))
 mkCan (NP (a, Z)) = (NP (a, Z))
 mkCan (NP ((S a), (S b))) = mkCan (NP (a, b))
 
+plusNat :: Nat -> Nat -> Nat
+plusNat a Z = a
+plusNat Z a = a
+plusNat a (S b) = plusNat (S a) b
+
+minusNat :: Nat -> Nat -> Nat
+minusNat a Z = a
+minusNat Z a = Z
+minusNat (S a) (S b) = minusNat a b
+
+timesNat :: Nat -> Nat -> Nat
+timesNat Z _ = Z
+timesNat _ Z = Z
+timesNat (S Z) a = a
+timesNat a (S Z) = a
+timesNat a b = (\(a,b,s) -> s) (timesNatReal (a, b, Z))
+
+timesNatReal :: (Nat, Nat, Nat) -> (Nat, Nat, Nat)
+timesNatReal (_, Z, s) = (Z, Z, s)
+timesNatReal (a, b, s) = timesNatReal (a, minusNat b (S Z), plusNat a s)
+
 {- </COPY> -}
 
 {- Helper functions to convert the data types -}
@@ -113,3 +134,48 @@ instance Nf RatNumbers where
 
 instance Nf NatP where
 	t2nf (NP (a, b)) = mkCan (NP (a, b))
+
+{- Third point: Eq, Ord, Num for RatNumbers -}
+
+instance Eq Nat where
+	(==) Z Z         = True
+	(==) Z (S _)     = False
+	(==) (S _) Z     = False
+	(==) (S a) (S b) = a == b
+
+instance Eq RatNumbers where
+	(==) a b = eqRatNum (t2nf a) (t2nf b)
+eqRatNum :: RatNumbers -> RatNumbers -> Bool
+eqRatNum (Rat a b) (Rat c d) = (a == c) && (b == d)
+
+instance Num RatNumbers where
+	(+) a b = t2nf (addRat a b)
+	(-) a b = t2nf (subRat a b)
+	(*) (Rat a b) (Rat c d) = t2nf (Rat (timesNat a c) (timesNat b d))
+	abs a = a
+	signum (Rat Z _) = 0
+	signum _ = 1
+	negate a = t2nf a
+	fromInteger num = (Rat ((intToNat.fromInteger.abs) num) (S Z))
+
+addRat :: RatNumbers -> RatNumbers -> RatNumbers
+addRat (Rat Z _) a = a
+addRat a (Rat Z _) = a
+addRat (Rat a b) (Rat c d) = (Rat (plusNat (timesNat a d) (timesNat c b)) (timesNat b d))
+
+subRat :: RatNumbers -> RatNumbers -> RatNumbers
+subRat a (Rat Z _) = a
+subRat (Rat Z _) a = (Rat Z (S Z))
+subRat (Rat a b) (Rat c d) = (Rat (minusNat (timesNat a d) (timesNat c b)) (timesNat b d))
+
+instance Ord RatNumbers where
+	compare (Rat Z _) (Rat Z _) = EQ
+	compare (Rat _ _) (Rat Z _) = GT
+	compare (Rat Z _) (Rat _ _) = LT
+	compare (Rat a b) (Rat c d) = cmpNat (timesNat a d) (timesNat c b)
+
+cmpNat :: Nat -> Nat -> Ordering
+cmpNat Z Z         = EQ
+cmpNat (S _) Z     = GT
+cmpNat Z (S _)     = LT
+cmpNat (S a) (S b) = cmpNat a b
