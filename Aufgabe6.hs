@@ -17,7 +17,8 @@ intToRoem a
 	| a < 9     = "V" ++ intToRoem (a-5)
 	| a == 9    = "IX"
 	| a < 40    = repeatX 'X' (div a 10) ++ intToRoem (mod a 10)
-	| a < 50    = "XL" ++ intToRoem (mod a 10)
+	| a < 49    = "XL" ++ intToRoem (mod a 10)
+	| a == 49   = "IL"
 	| a < 90    = "L"  ++ intToRoem (mod a 50)
 	| a < 99    = "XC" ++ intToRoem (mod a 90)
 	| a == 99   = "IC"
