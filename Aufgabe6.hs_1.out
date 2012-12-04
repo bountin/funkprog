@@ -1,0 +1,43 @@
+Punkte pro Testfall: 0; 0; Maximum: 0 
+
+Testfall: 1==1; Testfall OK 
+
+Testfaelle OK: 1; Testfaelle FALSCH: 0
+Punkte : 0
+
+Punkte pro Testfall: 9; 0; Maximum: 54 
+
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[0..9]] == ["","I","II","III","IV","V","VI","VII","VIII","IX"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[49,99,100,200,600]]  ; Testfall FALSCH 
+Erwartet: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[49,99,100,200,600]] == ["IL","IC","C","CC","DC"] 
+Ausgabe:  let z=Z:[S x|x<-z];in [show (z!!i)|i<-[49,99,100,200,600]] ==["XLIX","IC","C","CC","DC"]   
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[400,299,98,95,19,38,84,89,889]] == ["CD","CCIC","XCVIII","XCV","XIX","XXXVIII","LXXXIV","LXXXIX","DCCCLXXXIX"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[1899,5884]] == ["MDCCCIC","MMMMMDCCCLXXXIV"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (z!!i)|i<-[5999]] == ["MMMMMIM"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [i|(i,r)<-zip[10..99]["X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX","XXXI","XXXII","XXXIII","XXXIV","XXXV","XXXVI","XXXVII","XXXVIII","XXXIX","XL","XLI","XLII","XLIII","XLIV","XLV","XLVI","XLVII","XLVIII","IL","L","LI","LII","LIII","LIV","LV","LVI","LVII","LVIII","LIX","LX","LXI","LXII","LXIII","LXIV","LXV","LXVI","LXVII","LXVIII","LXIX","LXX","LXXI","LXXII","LXXIII","LXXIV","LXXV","LXXVI","LXXVII","LXXVIII","LXXIX","LXXX","LXXXI","LXXXII","LXXXIII","LXXXIV","LXXXV","LXXXVI","LXXXVII","LXXXVIII","LXXXIX","XC","XCI","XCII","XCIII","XCIV","XCV","XCVI","XCVII","XCVIII","IC"],r/=show(z!!i)]  ; Testfall FALSCH 
+Erwartet: let z=Z:[S x|x<-z];in [i|(i,r)<-zip[10..99]["X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX","XXXI","XXXII","XXXIII","XXXIV","XXXV","XXXVI","XXXVII","XXXVIII","XXXIX","XL","XLI","XLII","XLIII","XLIV","XLV","XLVI","XLVII","XLVIII","IL","L","LI","LII","LIII","LIV","LV","LVI","LVII","LVIII","LIX","LX","LXI","LXII","LXIII","LXIV","LXV","LXVI","LXVII","LXVIII","LXIX","LXX","LXXI","LXXII","LXXIII","LXXIV","LXXV","LXXVI","LXXVII","LXXVIII","LXXIX","LXXX","LXXXI","LXXXII","LXXXIII","LXXXIV","LXXXV","LXXXVI","LXXXVII","LXXXVIII","LXXXIX","XC","XCI","XCII","XCIII","XCIV","XCV","XCVI","XCVII","XCVIII","IC"],r/=show(z!!i)] == [] 
+Ausgabe:  let z=Z:[S x|x<-z];in [i|(i,r)<-zip[10..99]["X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX","XXXI","XXXII","XXXIII","XXXIV","XXXV","XXXVI","XXXVII","XXXVIII","XXXIX","XL","XLI","XLII","XLIII","XLIV","XLV","XLVI","XLVII","XLVIII","IL","L","LI","LII","LIII","LIV","LV","LVI","LVII","LVIII","LIX","LX","LXI","LXII","LXIII","LXIV","LXV","LXVI","LXVII","LXVIII","LXIX","LXX","LXXI","LXXII","LXXIII","LXXIV","LXXV","LXXVI","LXXVII","LXXVIII","LXXIX","LXXX","LXXXI","LXXXII","LXXXIII","LXXXIV","LXXXV","LXXXVI","LXXXVII","LXXXVIII","LXXXIX","XC","XCI","XCII","XCIII","XCIV","XCV","XCVI","XCVII","XCVIII","IC"],r/=show(z!!i)] ==[49]   
+
+Testfaelle OK: 4; Testfaelle FALSCH: 2
+Punkte : 36
+
+Punkte pro Testfall: 4; 0; Maximum: 46 
+
+Testfall: show (Rat Z (S Z)) == "0/1"; Testfall OK 
+Testfall: show (Rat (S (S (S Z))) (S (S (S (S Z))))) == "111/100"; Testfall OK 
+Testfall: show (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) == "111/11010"; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (Rat (z!!i) (S Z))|i<-[0..4]]==["0/1","1/1","110/1","111/1","100/1"]; Testfall OK 
+Testfall: let z=Z:[S x|x<-z];in [show (Rat (S Z) (z!!i))|i<-[10..14]] == ["1/11110","1/11111","1/11100","1/11101","1/10010"]; Testfall OK 
+Testfall: Rat Z (S(S Z)) == Rat Z (S Z); Testfall OK 
+Testfall: t2nf (Rat Z (S (S (S Z)))) == Rat Z (S Z); Testfall OK 
+Testfall: t2nf (Rat (S (S (S Z))) (S (S (S (S Z))))) == Rat (S (S (S Z))) (S (S (S (S Z)))); Testfall OK 
+Testfall: t2nf (Rat (S (S (S Z))) (S (S (S (S (S (S Z))))))) == Rat (S Z) (S (S Z)); Testfall OK 
+Testfall: [1|(NP (Z,Z))<-[t2nf (NP (S Z,S Z))]] == [1]; Testfall OK 
+Testfall: [1|(NP (Z,S Z))<-[t2nf (NP ((S (S Z)),(S (S (S Z)))))]] == [1]; Testfall OK 
+Testfall: [1|(NP (S Z,Z))<-[t2nf (NP ((S (S (S Z))),(S (S Z))))]] == [1]; Testfall OK 
+
+Testfaelle OK: 12; Testfaelle FALSCH: 0
+Punkte : 46
+
+Punkte gesamt: 82
+
