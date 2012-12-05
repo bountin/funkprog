@@ -1,0 +1,7 @@
+solve ([3,6,(-2),3,21],42) == [Plus,Plus,Div,Times]
+solve ([10,6,12,15,3,13],(-52)) == [Times,Div,Minus,Div,Times]
+solve ([42],42) == []
+solve ([42],21) == []
+solve ([3,2],1) == [Minus]
+solve ([3,2],1) == [Div]
+solve ([3,2],42) == []
